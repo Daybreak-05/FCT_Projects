@@ -1,3 +1,7 @@
+<?php 
+if(session_status() == PHP_SESSION_NONE) session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,8 +17,9 @@
 
         <h1>Iniciar sesión</h1>
 
-        <form action="">
+        <form class="form" action="logic.php"  method="post">
             
+        <input type="hidden" name="login">
         <div class="form__user">
             <i class="fa-solid fa-user"></i>
             <label for="user"></label>
@@ -27,8 +32,10 @@
             <input type="text" id="passw" name="passw" placeholder="Contraseña">
             <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
         </div>
+        <?php if (isset($_SESSION['error'])){ echo "<p class='error' style='color: red;'>".$_SESSION['error']."</p>"; $_SESSION['error']=null;}?>
 
-        </form>
+        
+    </form>
 
         <div class="register">
             <p>¿Aún no tienes cuenta?</p>

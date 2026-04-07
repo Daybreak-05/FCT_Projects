@@ -1,3 +1,12 @@
+<?php 
+    if(session_status() == PHP_SESSION_NONE) session_start();
+
+    if (!isset($_SESSION['login']) || $_SESSION["login"] == false){
+        header("Location: login.php");
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +21,8 @@
     <h1>Contenido del sitio</h1>
 
     <article>
-        <a href="#">Cerrar sesión</a>
+        
+        <form action="logic.php"><input type="hidden" name="logout"><button  class="logout" type="submit"><a>Cerrar sesión</a></button></form>
 
     <div class="article__text">
         <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam beatae tempore quisquam. 
