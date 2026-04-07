@@ -42,13 +42,13 @@ try {
 
             }else{
                 $_SESSION['error'] ='Credenciales no válidas';
-                header("Location: login.php");
+                header("Location: register.php");
                 }
             
             }else{
 
                 $_SESSION['error'] ='Credenciales no válidas';
-                header("Location: login.php");
+                header("Location: register.php");
                 
         }
 
