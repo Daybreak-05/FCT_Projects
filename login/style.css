@@ -1,0 +1,75 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+}
+.content{
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+article{
+    display: flex;
+    align-content: center;
+    width: 60%;
+    height: 80%;
+    flex-direction: column;
+}
+.article__text{
+    background-color: white;
+    color: black;
+    display: flex;
+    
+    flex-direction: column;
+    justify-content: space-around;
+}
+h1{
+    color: orangered;
+}
+a{
+    align-self: flex-start;
+    text-decoration: none;
+    color: orangered;
+}
+a:hover{
+   text-decoration: underline;
+   color: rgb(196, 52, 0);
+
+}
+p{
+    padding: 20px;
+}
+p, a {
+    font-size: 24px;
+}
+form{
+    width: 50%;
+    border-radius: 10px;
+    background-color: darkslategray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form div{
+    padding: 12px;
+    display: flex;
+}
+.register{
+    margin-top: 5%;
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+}
+.register *{
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+}
