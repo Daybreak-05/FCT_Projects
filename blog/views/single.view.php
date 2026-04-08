@@ -1,6 +1,7 @@
-<?php 
+<?php
 require_once "header.php";
-
+?>
+<?php 
 foreach ($post as $p) {
 ?>
 
@@ -14,20 +15,20 @@ foreach ($post as $p) {
                     <img src="<?= RUTA; ?>/img/<?= $p['thumb'] ?>" alt="<?= $p['thumb'] ?>"></img>
                 </a>
             </div>
-            <p class="extracto"><?= $p['extracto'] ?></p>
-            <a href="single.php?id=<?= $p['id'] ?>" class="continuar">Continuar leyendo</a>
+            <p class="extracto"><?= $p['texto'] ?></p>
+            <a href="index.php" class="continuar">Volver</a>
+            
         </article>
     </div>
 </div>
 
 <?php
 }
+
 ?>
 
 
-<?php 
-require "paginacion.php";
-?>
-    
+
 </body>
+
 </html>
