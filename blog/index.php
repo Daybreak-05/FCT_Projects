@@ -9,6 +9,9 @@ if ($conexion == false) {
     header("Locate: error.php");
 }
 
+contar_posts($blog_config['postPpagina'],$conexion);
+
+
 $post = obtener_post($blog_config['postPpagina'], $conexion);
 
 

@@ -12,7 +12,7 @@ if ($conexion == false || isset($_GET['id'])) {
 
 $id = $_GET['id'];
 
-contar_posts_id($conexion, $id);
+contar_posts_id($id, $conexion);
 
 $post = obtener_post_id($blog_config['postPpagina'], $conexion, $id);
 

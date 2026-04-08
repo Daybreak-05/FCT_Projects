@@ -43,14 +43,27 @@ function obtener_post_id($postPpagina, $conexion, $id){
     return $statement->fetchAll();
 }
 
-function contar_posts($conexion){
-$stmtTotal = $conexion->prepare("SELECT COUNT(*) FROM articulos");
+function contar_posts($postPpagina, $conexion){
+if (paginaActual() >= 0) {
+    header("Location: error.php");
+}
+$inicio = (paginaActual() > 1) ? paginaActual() * $postPpagina - $postPpagina : 0;
+$stmtTotal = $conexion->prepare("SELECT COUNT(*) FROM articulos LIMIT $inicio, $postPpagina");
 $stmtTotal->execute();
 $total = (int) $stmtTotal->fetchColumn();
-return $total; 
+
+    if ($total==0) {
+    
+        header("Location:error.php");
+    
+    }else{
+
+        return $total; 
+    }
+
 }
 
-function contar_posts_id($conexion, $id){
+function contar_posts_id($id,$conexion){
 $stmtTotal = $conexion->prepare("SELECT COUNT(*) FROM articulos WHERE id = $id");
 $stmtTotal->execute();
 $total = (int) $stmtTotal->fetchColumn();
