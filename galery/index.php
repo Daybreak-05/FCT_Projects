@@ -24,6 +24,6 @@ $numImagenes = $statement->fetchColumn();
 $totalPaginas = ceil($numImagenes / $fotosPpagina);
 
 
-include_once "index.view.php";
+include_once "views/index.view.php";
 
 ?>

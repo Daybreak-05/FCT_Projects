@@ -22,6 +22,6 @@ if (isset($_GET['image'])){
 }
 
 
-require_once "photo.view.php";
+require_once "views/photo.view.php";
 
 ?>

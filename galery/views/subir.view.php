@@ -17,7 +17,7 @@
     </header>
 
     <div class="contenedor">
-        <form class="formulario" method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+        <form class="formulario" method="post" enctype="multipart/form-data" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>">
             <label for="foto">Selecciona tu foto</label>
             <input type="file" name="foto" id="foto">
 

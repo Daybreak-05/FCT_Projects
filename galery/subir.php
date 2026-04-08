@@ -34,6 +34,6 @@ try {
  }
 
 
-require_once "subir.view.php";
+require_once "views/subir.view.php";
 
 ?>

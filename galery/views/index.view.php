@@ -29,7 +29,7 @@
                 ?>
                 <div class="thumb">
                     <a href="photo.php?image=<?= $f['id']?>">
-                    <img class="" src="images__galery/<?= $f['imagen']?>" alt="<?php echo $f['titulo']?>">
+                    <img src="images__galery/<?= $f['imagen']?>" alt="<?php echo $f['titulo']?>">
                     </a>
                 </div>
                 <?php
