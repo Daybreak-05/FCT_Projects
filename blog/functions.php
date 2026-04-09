@@ -56,7 +56,7 @@ if (paginaActual() <= 0) {
     header("Location: error.php");
     }
 $inicio = (paginaActual() > 1) ? paginaActual() * $postPpagina - $postPpagina : 0;
-$stmtTotal = $conexion->prepare("SELECT COUNT(*) FROM articulos LIMIT $inicio, $postPpagina");
+$stmtTotal = $conexion->prepare("SELECT COUNT(*) FROM articulos");
 $stmtTotal->execute();
 $total = (int) $stmtTotal->fetchColumn();
         
@@ -84,6 +84,13 @@ function limpiarDatos($datos){
     $datos = htmlspecialchars($datos);
 
     return $datos;
+}
+
+function isAdmin($blog_admin){
+if (!isset($_SESSION['admin']) || $_SESSION['admin'] != $blog_admin){
+    header('Location:'.RUTA.'/login.php');
+}
+
 }
 
 ?>

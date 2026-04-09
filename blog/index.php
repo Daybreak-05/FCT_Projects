@@ -15,6 +15,9 @@ contar_posts($blog_config['postPpagina'],$conexion);
 
 $post = obtener_post($blog_config['postPpagina'], $conexion);
 
+if (!$post) {
+    header("Location: error.php");
+}
 
 require_once 'views/index.view.php';
 ?>

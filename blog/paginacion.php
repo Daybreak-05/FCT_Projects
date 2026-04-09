@@ -1,6 +1,7 @@
 <?php 
 $totalposts = contar_posts($blog_config['postPpagina'], $conexion);
 $numpaginas = (int) ceil($totalposts / $blog_config["postPpagina"]);
+echo $numpaginas;
 ?>
 
     <section class="paginacion">

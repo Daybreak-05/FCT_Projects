@@ -1,9 +1,21 @@
 <?php 
-
+if (session_status() == PHP_SESSION_NONE) session_start();
 require_once "admin/config.php";
 require_once "functions.php";
 
-if (isset($_POST['user']) && isset($_POST['passw'])){
+
+    if (isset($_SESSION['admin'])){
+        
+        if ($_SESSION['admin'] == $blog_admin['usuario']) {
+
+            header('location:' . RUTA . '/admin');
+
+        }
+
+    }
+
+
+ if (isset($_POST['user']) && isset($_POST['passw'])){
 
     $user = $_POST['user'];
     $passw = $_POST['passw'];
@@ -21,6 +33,7 @@ if (isset($_POST['user']) && isset($_POST['passw'])){
     }
 
 }
+
 
 
 require_once "views/login.view.php";
