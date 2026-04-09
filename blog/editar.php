@@ -24,15 +24,14 @@ if ($conexion == false) {
         $titulo = limpiarDatos($_POST['titulo']);
         $extracto = limpiarDatos($_POST['extracto']);
         $texto = limpiarDatos($_POST['texto']);
-        $thumb = limpiarDatos($_POST['thumb']);
         $thumb_guardada = limpiarDatos($_POST['thumb-guardada']);   
         
-        if (empty($thumb)) {
-            $thumb = $thumb_guardada;
-        }else{
-            $archivosubido = '../'. $blog_config['carpeta_imagenes'] . $_FILES ['thumb']['name'];
+        if (!empty($_FILES['thumb']['name'])) {
+            $archivosubido = $blog_config['carpetaImagenes'] . $_FILES['thumb']['name'];
             move_uploaded_file($_FILES['thumb']['tmp_name'], $archivosubido);
             $thumb = $_FILES['thumb']['name'];
+        } else {
+            $thumb = $thumb_guardada;
         }
         
         $statement = $conexion->prepare("UPDATE articulos SET titulo = ?, extracto= ?, texto = ?, thumb = ? WHERE id = ?;");

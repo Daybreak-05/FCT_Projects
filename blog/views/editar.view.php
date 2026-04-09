@@ -10,7 +10,7 @@ foreach ($post as $p) {
         <article>
             <h2 class="titulo">Editar Artículo</h2>
             
-            <form class="formulario" method="post" action="">
+            <form class="formulario" method="post" action="" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?= $p['id'] ?>">
                 <input type="text" name="titulo" value="<?= $p['titulo'] ?>">
                 <input type="text" name="extracto" value="<?= $p['extracto'] ?>">
