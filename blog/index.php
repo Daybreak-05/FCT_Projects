@@ -7,6 +7,7 @@ $conexion = conexion();
 
 if ($conexion == false) {
     header("Locate: error.php");
+    echo "conexion";
 }
 
 contar_posts($blog_config['postPpagina'],$conexion);

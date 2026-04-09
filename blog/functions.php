@@ -43,24 +43,24 @@ function obtener_post_id($postPpagina, $conexion, $id){
     return $statement->fetchAll();
 }
 
-function contar_posts($postPpagina, $conexion){
-if (paginaActual() >= 0) {
-    header("Location: error.php");
+function buscar_post($buscar, $conexion){
+
+    $statement = $conexion->prepare("SELECT * FROM articulos WHERE titulo LIKE ? OR texto LIKE ?");
+    //Sentencia para buscar en una parabra especifica:
+    $statement->execute(["%{$buscar}%", "%{$buscar}%"]);
+    return $statement->fetchAll();
 }
+
+function contar_posts($postPpagina, $conexion){
+if (paginaActual() <= 0) {
+    header("Location: error.php");
+    }
 $inicio = (paginaActual() > 1) ? paginaActual() * $postPpagina - $postPpagina : 0;
 $stmtTotal = $conexion->prepare("SELECT COUNT(*) FROM articulos LIMIT $inicio, $postPpagina");
 $stmtTotal->execute();
 $total = (int) $stmtTotal->fetchColumn();
-
-    if ($total==0) {
-    
-        header("Location:error.php");
-    
-    }else{
-
+        
         return $total; 
-    }
-
 }
 
 function contar_posts_id($id,$conexion){
@@ -82,6 +82,8 @@ function limpiarDatos($datos){
     $datos = trim($datos);
     $datos = stripslashes($datos);
     $datos = htmlspecialchars($datos);
+
+    return $datos;
 }
 
 ?>
