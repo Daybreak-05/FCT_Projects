@@ -3,6 +3,11 @@
 <?php
 
     require_once "views/header.php";
+
+?>
+    <div class="contenedor"><h1 class="titulo">Resultados de la busqueda: <?= $_GET['busqueda'] ?></h1></div>
+<?php
+
     foreach ($resultado as $p) {
         ?>
 
