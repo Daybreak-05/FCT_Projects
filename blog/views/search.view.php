@@ -14,7 +14,7 @@
 <div class="contenedor">
     <div class="post">
         <article>
-            <h2 class="titulo"><a href="single.php?id=<?= $p['id'] ?>"><?= $p['titulo'] ?></a></h2>
+            <h2 class="titulo"><a href="single.php?id=<?= $p['id'] ?>"><?= $p['id'] ?> - <?= $p['titulo'] ?></a></h2>
             <p class="fecha"><?= $p['fecha'] ?></p>
             <div class="thumb">
                 <a href="single.php?id=<?= $p['id'] ?>">

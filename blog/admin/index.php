@@ -9,7 +9,7 @@ isAdmin($blog_admin['usuario']);
 $conexion = conexion();
 
 if ($conexion == false) {
-    header("Locate: error.php");
+    header("Locate: ../error.php");
     echo "conexion";
 }
 
