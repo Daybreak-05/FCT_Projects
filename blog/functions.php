@@ -99,33 +99,63 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] != $blog_admin){
 
 function email($nombre, $body){
 
-    
-    $mail = new PHPMailer(true); // Habilitar excepciones
-    
-    // Configuración SMTP
-    $mail->isSMTP();
-    $mail->Host = 'live.smtp.mailtrap.io'; // Su servidor SMTP
-    $mail->SMTPAuth = true;
-    $mail->Username = 'smtp@mailtrap.io'; // Su usuario de Mailtrap
-    $mail->Password = 'c08ea9fd67c7006b40c7899bf604ce3a'; // Su contraseña de Mailtrap
-    $mail->SMTPSecure = 'tls';
-    $mail->Port = 587;
-    
-    // Configuración de remitente y destinatario
-    $mail->setFrom('hello@demomailtrap.co', 'Contacto del blog');
-    $mail->addAddress('pablo999picon@gmail.com', 'Nombre Destinatario');
-    
-    // Enviando email de texto plano
-    $mail->isHTML(false); // Establecer formato de email a texto plano
-    $mail->Subject = "$nombre quiere contactar contigo";
-    $mail->Body    = "$body";
-    
-    // Enviar el email
-    if(!$mail->send()){
-        echo 'El mensaje no pudo ser enviado. Error de Mailer: ' . $mail->ErrorInfo;
-        } else {
-            echo 'El mensaje ha sido enviado';
+    try {
+        $phpmailer = new PHPMailer();
+        $phpmailer->isSMTP();
+        $phpmailer->Host = 'live.smtp.mailtrap.io';
+        $phpmailer->SMTPAuth = true;
+        $phpmailer->Port = 587;
+        $phpmailer->Username = 'api';
+        $phpmailer->Password = '04a3d416150a7fa8a02166089f67b94f';
+        
+        // Configuración de remitente y destinatario
+        $phpmailer->setFrom('hello@demomailtrap.co', 'Contacto del blog');
+        $phpmailer->addAddress('pablopicon999@gmail.com', 'Nombre Destinatario');
+        
+        // Enviando email en formato HTML
+        $phpmailer->isHTML(true);
+        $phpmailer->Subject = "$nombre quiere contactar contigo";
+        
+        // Adjuntar imagen embebida
+        $imagePath = "img/logo.png";
+        if (file_exists($imagePath)) {
+            $phpmailer->addEmbeddedImage($imagePath, 'logo', 'logo.png');
         }
+        
+        // Cuerpo del email con estilos inline
+        $phpmailer->Body = "
+        <!DOCTYPE html>
+        <html lang='es' style='margin:0; padding:0;>
+        <head>
+            <meta charset='UTF-8'>
+            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        </head>
+        <body style= 'font-size:16px; font-family:\"Open Sans\", sans-serif; background:#ebebeb;'>
+            <div style='max-width:1000px; width:90%; margin:0 auto; box-shadow:2px 2px 12px;'>
             
+            <div style='text-align:center;'>
+            <img src='cid:logo' alt='firma' style='margin:0 auto; vertical-align:top; width: 96%;'>
+            </div>
+            
+                <div style='max-width:1000px; width:90%; margin:auto; background:#fff; box-shadow:0px 0px 5px rgba(0,0,0,0.5); margin-bottom:30px; padding:30px;'>        
+                    <h2 style='font-family:\"Oswald\", Arial, Sans-serif; font-weight:normal; color:#000;'>Hola, Pablo</h2>
+                    <p style='margin:10px 0;'>En el <a href='".RUTA."' style='text-decoration:none; color:#BB1F35;'>blog</a> has recibido un mensaje</p>
+                    <br>
+                    <p style='margin:10px 0;'>$body</p>
+                    <br><br>
+                </div>
+            </div>
+        </body>
+        </html>
+        ";
+        
+        // Enviar el email
+        $phpmailer->send();
+        return true;
+        
+    } catch (Exception $e) {
+        echo 'El mensaje no pudo ser enviado. Error de Mailer: ' . $phpmailer->ErrorInfo;
+        return false;
+    }
 }
 ?>

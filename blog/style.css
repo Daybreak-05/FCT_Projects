@@ -13,7 +13,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: "Oswald", Arial, Sans-serif;
+	font-family: 'Oswald', Arial, Sans-serif;
 	font-weight: normal;
 }
 
@@ -58,7 +58,7 @@ header .logo {
 
 header .logo a {
 	color: #fff;
-	font-family: "Oswald", Arial, Sans-serif;
+	font-family: 'Oswald', Arial, Sans-serif;
 	font-size: 28px;
 	line-height: 70px;
 }
@@ -73,7 +73,7 @@ header .buscar {
 	margin-right: 15px;
 }
 
-header .buscar input[type="text"]{
+header .buscar input[type='text']{
 	background: none;
 	border:1px solid rgba(255,255,255,.7);
 	color:rgba(255,255,255,.7);
@@ -82,8 +82,8 @@ header .buscar input[type="text"]{
 	padding-right: 32px; 
 }
 
-header .buscar input[type="text"]:hover,
-header .buscar input[type="text"]:focus {
+header .buscar input[type='text']:hover,
+header .buscar input[type='text']:focus {
 	color:#fff;
 	border:1px solid #fff;
 }
@@ -143,7 +143,7 @@ header .menu ul li a .icono {
 }
 
 .post article .titulo {
-	font-family: "Oswald", Arial, Sans-serif;
+	font-family: 'Oswald', Arial, Sans-serif;
 	font-size: 28px;
 	font-weight: normal;
 	line-height: 28px;
@@ -259,9 +259,9 @@ footer .copyright {
 	overflow: hidden;
 }
 
-.formulario input[type="text"],
-.formulario input[type="email"],
-.formulario input[type="password"],
+.formulario input[type='text'],
+.formulario input[type='email'],
+.formulario input[type='password'],
 .formulario textarea {
 	border: 1px solid #A8A8A8;
 	border-radius: 2px;
@@ -274,9 +274,9 @@ footer .copyright {
 	color:#141938;
 }
 
-.formulario input[type="text"]:focus,
-.formulario input[type="email"]:focus,
-.formulario input[type="password"]:focus,
+.formulario input[type='text']:focus,
+.formulario input[type='email']:focus,
+.formulario input[type='password']:focus,
 .formulario textarea:focus {
 	border: 2px solid #595959;
 	padding: 15px;
@@ -288,7 +288,7 @@ footer .copyright {
 	min-height: 300px;
 }
 
-.formulario input[type="submit"]{
+.formulario input[type='submit']{
 	padding: 15px;
 	background: #595959;
 	color:#fff;
@@ -300,6 +300,6 @@ footer .copyright {
 	cursor: pointer;
 }
 
-.formulario input[type="submit"]:hover{
+.formulario input[type='submit']:hover{
 	background: #BB1F35;
 }

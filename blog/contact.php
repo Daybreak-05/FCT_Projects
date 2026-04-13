@@ -18,7 +18,7 @@ if (isset($_POST['email']) && isset($_POST['nombre']) && isset($_POST['texto']))
 
     }else{
 
-        $body = "El cliente '" . $nombre . "' con email '" . $email . "' quiere contactar contigo . Comentario adjunto: " . $texto;
+        $body = "El cliente '" . $nombre . "' con email '<a href='mailto:$email'>$nombre</a>' quiere contactar contigo . Comentario adjunto: " . $texto;
 
     }
 
