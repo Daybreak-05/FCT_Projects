@@ -29,9 +29,9 @@
                 
                 <nav class="menu">
                     <ul>
-                        <li><a href="#"><i class="fa fa-x"></i></a></li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#">Contacto <i class="fa fa-envelope"></i></a></li>
+                        <li><a href="https://x.com/?lang=es"><i class="fa fa-x"></i></a></li>
+                        <li><a href="https://facebook.com/?lang=es"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="<?= RUTA; ?>/contact.php">Contacto <i class="fa fa-envelope"></i></a></li>
                     </ul>
                 </nav>
                 
