@@ -1,6 +1,13 @@
 <?php 
 require_once "header.php";
+?>
+<div class="contenedor">
+        <h2><a href="<?= RUTA ?>/admin">Admin Page</a></h2><br>
+    
+    </div>
+</div>
 
+<?php
 foreach ($post as $p) {
 ?>
 
@@ -26,8 +33,16 @@ foreach ($post as $p) {
 
 
 <?php 
-require "pdf.php";
+require "pdf.php";?>
 
+<div class="contenedor">
+    <form action="excel.php" method="post">
+        <!-- <input type="hidden" name="pagina" value=""> Descomentar para usar por pagina -->
+        <button class="btn" type="submit">Exportar a excel</button>
+    </form>
+</div>
+
+<?php
 require "paginacion.php";
 ?>
     

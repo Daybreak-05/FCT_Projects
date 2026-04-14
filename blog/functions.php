@@ -34,6 +34,13 @@ function paginaActual(){
     return isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
 }
 
+function obtener_todos($conexion){
+    $statement = $conexion->prepare("SELECT * FROM articulos");
+    $statement->execute();
+    return $statement->fetchAll();
+}
+
+
 function obtener_post($postPpagina, $conexion){
     $inicio = (paginaActual() > 1) ? paginaActual() * $postPpagina - $postPpagina : 0;
     $statement = $conexion->prepare("SELECT * FROM articulos LIMIT $inicio, $postPpagina");
