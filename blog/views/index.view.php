@@ -26,6 +26,8 @@ foreach ($post as $p) {
 
 
 <?php 
+require "pdf.php";
+
 require "paginacion.php";
 ?>
     

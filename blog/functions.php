@@ -1,6 +1,8 @@
 <?php 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+require('fpdf186/fpdf.php');
+
 
 require 'vendor/autoload.php'; // Ajuste según su método de instalación
 
@@ -98,6 +100,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] != $blog_admin){
 
 
 function email($nombre, $body){
+    global $blog_config;
 
     try {
         $phpmailer = new PHPMailer();
@@ -121,11 +124,17 @@ function email($nombre, $body){
         if (file_exists($imagePath)) {
             $phpmailer->addEmbeddedImage($imagePath, 'logo', 'logo.png');
         }
+
+        $conexionPdf = conexion();
+        if ($conexionPdf !== false) {
+            $pdf = generarPdfPosts($blog_config['postPpagina'], $conexionPdf);
+            $phpmailer->addStringAttachment($pdf->Output('S'), 'list.pdf', 'base64', 'application/pdf');
+        }
         
         // Cuerpo del email con estilos inline
         $phpmailer->Body = "
         <!DOCTYPE html>
-        <html lang='es' style='margin:0; padding:0;>
+        <html lang='es' style='margin:0; padding:0;'>
         <head>
             <meta charset='UTF-8'>
             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
@@ -158,4 +167,82 @@ function email($nombre, $body){
         return false;
     }
 }
-?>
+
+
+class PDF extends FPDF
+{
+
+function PutLink($url, $text)
+{
+    $this->Write(5,$text,$url);
+    $this->SetTextColor(0);
+}
+    
+    // Page footer
+    function Footer()
+    {
+        // Position at 1.5 cm from bottom
+        $this->SetY(-15);
+        // Arial italic 8
+        $this->SetFont('Arial','I',8);
+        // Page number
+        $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+        }
+        }
+
+    function generarPdfPosts($postPpage, $conexion){
+    $post = obtener_post($postPpage,$conexion);
+    
+    $pdf = new PDF();
+    
+    $pdf->SetMargins(10,10,15);
+
+    //logo
+    $pdf->AliasNbPages();
+    // Arial bold 15
+    $pdf->SetFont('Arial','B',15);
+    
+    //texto
+    $pdf->SetFont('Times','',12);
+    
+    foreach ($post as $p) {
+        
+        $pdf->AddPage();
+        $pdf->Image('img/logo.png',45,6,120);
+        $pdf->SetY(100);
+        $pdf->SetFont('Arial','B',15);
+        
+        $pdf->SetTextColor(187, 31, 53);
+        
+        $pdf->PutLink("/single.php?id=".$p['id'], "Post - " . $p['id']);
+        
+        $pdf->Image("img/".$p['thumb'],45,90,120);
+        
+        $pdf->SetY(120);
+        $pdf->SetTextColor(116, 116, 116);
+        $pdf->SetFont('Arial','',12);
+        $pdf->Cell(0,10,"Fecha: ".$p['fecha'],0,1);
+        $pdf->SetTextColor(0);
+        $pdf->SetFont('Arial','',12);
+        $pdf->Write(10,$p['extracto']);
+        
+        }
+
+    return $pdf;
+}
+
+function topdf($page, $postPpage, $conexion){
+    $pdf = generarPdfPosts($postPpage, $conexion);
+        
+        $pdf->Output('I', 'list.pdf');
+        
+        }
+        
+        
+        
+        $conexion = conexion();
+        $page = 1;
+        $postPpage = 2;
+        
+        
+        ?>

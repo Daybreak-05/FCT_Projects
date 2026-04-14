@@ -1,3 +1,16 @@
+<?php 
+
+if (isset($_POST['pagina'])){
+
+    $pagina = $_POST['pagina'];
+    $_GET['pagina'] = $_POST['pagina'];
+    
+    }else{
+    
+    $_GET['pagina'] = 1;
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +23,8 @@
 	<title>My Blog</title>
 	<link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/557ccbb98e.js" crossorigin="anonymous"></script>
+
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LdHv7YsAAAAAKP-D3N0XehgN1fjqDXFdq-IC4J6"></script>
 
 </head>
 <body>
@@ -41,13 +56,15 @@
     <div class="post">
         <article>
             <h2 class="titulo">Contacta con un administrador</h2>
-            <form class="formulario" method="post" action="" enctype="multipart/form-data">
+            <form class="formulario" id="captcha" method="post" action="" enctype="multipart/form-data">
 
+                <input type="hidden" name="pagina" value="<?= $pagina ?>" required>
                 <input type="text" placeholder="Nombre" name="nombre" required>
                 <input type="email" placeholder="email de contacto" name="email" required>
                 <textarea name="texto" placeholder="Comentarios adicionales"></textarea>
 
-                <input type="submit" value="Enviar">
+                <input type="submit" value="Enviar" class="g-recaptcha" data-sitekey="6LdHv7YsAAAAAKP-D3N0XehgN1fjqDXFdq-IC4J6" 
+                data-callback='onSubmit' data-action='submit'>
             </form>
 
             <a href="index.php" class="continuar">Volver</a>
@@ -56,3 +73,9 @@
     </div>
 </div>
 </body>
+
+ <script>
+   function onSubmit(token) {
+     document.getElementById("captcha").submit();
+   }
+ </script>

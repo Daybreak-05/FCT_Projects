@@ -197,6 +197,23 @@ header .menu ul li a .icono {
 	background: #BB1F35;
 }
 
+.btn_alt {
+	padding: 15px;
+	display: inline-block;
+	margin: 15px 0;
+	background: #BB1F35;
+	color:#fff;
+	font-size: 1em;
+	font-family: Arial, sans-serif, helvetica;
+	border-radius: 2px;
+	border:none;
+}
+
+.btn_alt:hover {
+	text-decoration: none;
+	background: #595959;
+}
+
 /* --- Footer --- */
 footer {
 	background: #BB1F35;
